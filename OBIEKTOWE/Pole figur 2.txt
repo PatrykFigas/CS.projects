@@ -1,0 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace interfejs
+{
+    interface Ifigura
+    {
+        double obwod
+        {
+            get;
+        }
+        double Pole();
+    }
+
+
+    class Kwadrat : Ifigura
+    {
+        protected int bok_a;
+
+        public Kwadrat(int a)
+        {
+
+            bok_a = a;
+        }
+
+        public double Pole()
+        {
+            return bok_a * bok_a;
+        }
+
+        public double obwod
+        {
+            get
+            {
+                return 4 * bok_a;
+            }
+        }
+    }
+
+
+    class Trojkat : Ifigura
+    {
+        protected double bok_a, bok_b, bok_c;
+        private double p;
+
+        public Trojkat(int a, int b, int c)
+        {
+            bok_a = a;
+            bok_b = b;
+            bok_c = c;
+            
+        }
+
+        public double Pole()
+        {
+            p = (bok_a + bok_b + bok_c) / 2;
+            return Math.Sqrt(p*(p-bok_a)*(p-bok_b)*(p-bok_c));
+        }
+
+        public double obwod
+        {
+            get
+            {
+                return bok_a + bok_b + bok_c;
+            }
+        }
+
+    }
+
+
+    class glowna
+    {
+
+        public static void Main()
+        {
+
+            Kwadrat kwadrat = new Kwadrat(15);
+            Trojkat trojkat = new Trojkat(4, 5, 6);
+
+
+            Console.WriteLine("pole kwadratu: " + kwadrat.Pole() + " \t obwod kwadratu: " + kwadrat.obwod);
+            Console.WriteLine("pole trójk¹ta: " + trojkat.Pole() + " \t obwod trójk¹ta: " + trojkat.obwod);
+
+        }
+
+    }
+}

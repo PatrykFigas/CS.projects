@@ -1,0 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace dziedziczenie
+{
+    public class Prosta
+    {
+        protected int x;
+
+
+        public Prosta(int xx)
+        {
+            x = xx;
+        }
+
+        public virtual void Odl_zero()
+        {
+            Console.WriteLine(x);
+        }
+
+
+    }
+
+    public class Plaszczyzna : Prosta
+    {
+        protected int y;
+
+
+
+        public Plaszczyzna(int xx, int yy)
+            : base(xx)
+        {
+            y = yy;
+        }
+
+        public override void Odl_zero()
+        {
+            Console.WriteLine(System.Math.Sqrt(x * x + y * y));
+        }
+
+
+    }
+
+    public class Przestrzen : Plaszczyzna
+    {
+        protected int z;
+
+        public Przestrzen(int xx, int yy, int zz)
+            : base(xx, yy)
+        {
+            z = zz;
+        }
+
+        public override void Odl_zero()
+        {
+            Console.WriteLine(System.Math.Sqrt(x * x + y * y + z * z));
+        }
+
+        public static void Odl_punktow(Przestrzen p1, Przestrzen p2)
+        {
+            Console.WriteLine(System.Math.Sqrt(Math.Pow(p1.x - p2.x, 2) + Math.Pow(p1.y - p2.y, 2) + Math.Pow(p1.z - p2.z, 2)));
+        }
+
+
+    }
+
+    class glowna
+    {
+        static void Main()
+        {
+            Przestrzen punkt = new Przestrzen(0, 0, 5);
+            Przestrzen punkt1 = new Przestrzen(0, 5, 0);
+            Plaszczyzna punkt2 = new Plaszczyzna(1, 2);
+            Prosta punkt3 = new Prosta(4);
+
+            punkt1.Odl_zero();
+            punkt2.Odl_zero();
+            punkt3.Odl_zero();
+
+
+            punkt.Odl_zero();
+            Przestrzen.Odl_punktow(punkt, punkt1);
+
+
+        }
+    }
+}

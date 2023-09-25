@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace interfejsy
+{
+    interface ILeibniz
+    {
+        double Ludolfina(int liczba);
+    }
+
+    interface IEuler
+    {
+        double Ludolfina(int liczba);
+    }
+
+
+    class Obliczenia : ILeibniz, IEuler
+    {
+         double ILeibniz.Ludolfina(int n)
+        {
+            double lud = 0;
+            for (int i = 0; i < n; i++)
+                lud += Math.Pow(-1, i) / (2 * i + 1);
+            return 4*lud;
+        }
+
+        double IEuler.Ludolfina(int n)
+        {
+            double lud = 0;
+            for (int i = 1; i <= n; i++)
+                lud += 1 / Math.Pow(i,2);
+            return Math.Sqrt(lud*6);
+            
+        }
+    }
+
+
+
+    class glowna
+    {
+
+        public static void Main()
+        {
+            Obliczenia o1 = new Obliczenia();
+            ILeibniz mat1 = (ILeibniz) o1;
+            Console.WriteLine("Wg. Leibniza " + (mat1.Ludolfina(20)-Math.PI));
+            IEuler mat2 = (IEuler)o1;
+            Console.WriteLine("Wg. Eulera   " + (mat2.Ludolfina(20) - Math.PI));
+
+        }
+
+    }
+}

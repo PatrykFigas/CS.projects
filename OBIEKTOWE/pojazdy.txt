@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication33
+{
+
+    public class Pojazd
+    {
+
+        public virtual void Jedzie()
+        {
+            Console.WriteLine("pojazd jedzie");
+        }
+    }
+
+    public class Pociag : Pojazd
+    {
+        public  void Jedzie()
+        {
+            Console.WriteLine("poci¹g jedzie");
+        }
+    }
+
+    public class Samochod : Pojazd
+    {
+        public  void Jedzie()
+        {
+            Console.WriteLine("samochód jedzie");
+        }
+    }
+
+
+
+
+
+    public  class SamochodOsobowy : Samochod
+    {
+        public  void Jedzie()
+        {
+            Console.WriteLine("samochód osobowy jedzie");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+   
+
+            List<Pojazd> listaPojazdow = new List<Pojazd>();
+            listaPojazdow.Add(new Pojazd());
+            listaPojazdow.Add(new Pociag());
+            listaPojazdow.Add(new Samochod());
+            listaPojazdow.Add(new SamochodOsobowy());
+            // petla wywolujaca metode Jedzie, aby sie 
+            // dowiedziec jakie pojazdy sie poruszaja
+            foreach (Pojazd p in listaPojazdow)
+            {
+                p.Jedzie();
+
+            }
+            Console.ReadKey();
+        }
+
+    }
+}

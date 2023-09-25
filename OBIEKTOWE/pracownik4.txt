@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MetodaBazowa
+{
+
+    public class Pracownik
+    {
+        protected string nazwisko;
+        protected string imie;
+        protected double p_zasadnicza;
+
+        public Pracownik(string nazwisko, string imie, double p_zasadnicza)
+        {
+            this.nazwisko = nazwisko;
+            this.imie = imie;
+            this.p_zasadnicza = p_zasadnicza;
+        }
+        public virtual double Premia()
+        {
+            return (p_zasadnicza * 0.20);
+        }
+     }
+
+    public class Kierownik : Pracownik
+    {
+
+        public Kierownik(string nazwisko, string imie, double p_zasadnicza)
+            : base(nazwisko, imie, p_zasadnicza) { }
+        public override double Premia()
+        {
+            return (p_zasadnicza * 0.50);
+        }
+    }
+
+
+
+    public class Dyrektor : Kierownik
+    {
+
+        public Dyrektor(string nazwisko, string imie, double p_zasadnicza)
+            : base(nazwisko, imie, p_zasadnicza) { }
+
+
+        public override double Premia()
+        {
+            return base.Premia() + 2000;
+
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+         
+            Pracownik p1 = new Pracownik("Present", "Andy", 5000);
+            Pracownik p2 = new Pracownik("Absent", "Kate", 4500);
+            Pracownik p3 = new Pracownik("Who", "Knows", 4000);
+            Kierownik k1 = new Kierownik("Janik", "Adam", 8000);
+            Dyrektor  d1 = new Dyrektor("Kasztan", "Arnold", 10000);
+
+
+            List<Pracownik> Zaloga = new List<Pracownik>();
+            Zaloga.Add(p1);
+            Zaloga.Add(p2);
+            Zaloga.Add(p3);
+            Zaloga.Add(k1);
+            Zaloga.Add(d1);
+
+            double suma1 = 0, suma2=0;
+            int ile1 = 0, ile2 = 0;
+            foreach (Pracownik z in Zaloga)
+            {
+                if (z.GetType().Name == "Pracownik")
+                { suma1 += z.Premia(); ile1++; }
+                else
+                { suma2 += z.Premia(); ile2++; };         }
+            Console.WriteLine("średnia premia pracownika: " + suma1 / ile1 + " średnia premia szefostwa " + suma2 /ile2);
+            Console.ReadKey();
+        }
+    }
+}

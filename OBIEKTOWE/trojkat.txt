@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication12
+{
+    class Trojkat // trójk¹t równoboczny
+    {
+        private double a;  //hermetyzacja
+        private double h;  // ..
+
+        public double bok  //wlasciwosc ustawia wartosc boku trojkata
+        {                  // i  ustawia na jego podstawie wysokosc trojkata
+            set  //akcesor
+            {
+                a = value;
+                h = a * System.Math.Sqrt(3) / 2; //wzor na wysokosc
+            }
+        }
+        public double wysokosc //wlasciwosc
+        {
+            get   // akcesor 
+            {
+                return h;
+            }
+        }
+        public double pole() //zwraca pole trojkata rownobocznego
+        {
+            return a * h / 2;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Trojkat tr;  // deklaracja obiektu 
+            
+            tr = new Trojkat(); // tworzenie obiektu
+
+            tr.bok = 3;
+           
+            Console.WriteLine(tr.wysokosc);
+         
+            Console.WriteLine(" pole trojkata: {0}", tr.pole());
+        }
+    }
+}

@@ -1,0 +1,110 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace Interfejsy2
+{
+    interface ICzlowiek1
+    {
+        void Idz(int x);       // Rozpoczyna od marszu z zadan¹ prêdkoœci¹
+        void Biegnij(int x);   // Rozpoczyna od biegu z zadan¹ prêdkoœci¹
+        void Biegnij();        // Zaczyna biec po pocz¹tkowym marszu zwiêkszaj¹c
+                               // aktualn¹ prêdkoœæ dwukrotnie
+
+
+    }
+    interface ICzlowiek2
+    {
+
+        void Przyspiesz();     // Przyspiesza bieg o 2 km. lub marsz o 1 km.
+        void Zwolnij();        // Zwalnia do po³owy aktualnej prêdkoœci lub
+                               // Spaceruje/stoi przy prêdkosci <1 km.						
+    }
+
+
+    class Czlowiek : ICzlowiek1, ICzlowiek2
+    {
+        double predkosc1;
+        char status;
+        public void Idz(int v1)
+        {
+            predkosc1 = v1;
+            status = 'i';
+            Console.WriteLine("Idzie z predkoscia {0} km/h", predkosc1);
+        }
+
+        public void Biegnij(int v1)
+        {
+            predkosc1 = v1;
+            status = 'b';
+            Console.WriteLine("Biegnie z predkoscia {0} km/h", predkosc1);
+        }
+        public void Biegnij()
+        {
+            predkosc1 = predkosc1 * 2;
+            status = 'b';
+            Console.WriteLine("Biegnie z predkoscia {0} km/h", predkosc1);
+        }
+
+
+
+        public void Przyspiesz()
+        {
+            if (status == 'i')
+            {
+                predkosc1 = predkosc1 + 1;
+                Console.WriteLine("Przyspieszy³ do " + predkosc1);
+            }
+            else
+            {
+                predkosc1 = predkosc1 + 2;
+                Console.WriteLine("Przyspieszy³ do " + predkosc1);
+
+            }
+
+        }
+        public void Zwolnij()
+        {
+            predkosc1 = predkosc1 / 2;
+            if (predkosc1 >= 1)
+                Console.WriteLine("Zwolni³  do " + predkosc1);
+            else
+                Console.WriteLine("Spaceruje lub stoi");
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Czlowiek Czlek = new Czlowiek();
+
+            //Czlek.Idz(5);
+            //Czlek.Przyspiesz();
+            //Czlek.Zwolnij();
+            //Czlek.Przyspiesz();
+            //Czlek.Zwolnij();
+            //Czlek.Zwolnij();
+            //Czlek.Zwolnij();
+
+
+            //Czlek.Idz(5);
+            //Czlek.Biegnij();
+            //Czlek.Przyspiesz();
+            //Czlek.Zwolnij();
+            //Czlek.Zwolnij();
+            //Czlek.Zwolnij();
+            //Czlek.Zwolnij();
+
+
+
+            Czlek.Biegnij(13);
+            Czlek.Przyspiesz();
+            Czlek.Zwolnij();
+            Czlek.Zwolnij();
+            Czlek.Zwolnij();
+            Czlek.Zwolnij();
+
+        }
+    }
+}

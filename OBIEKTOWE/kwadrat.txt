@@ -1,0 +1,73 @@
+namespace ConsoleApp8
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            //Kwadrat[] tablica =  new Kwadrat[4];
+
+            //tablica[0] = new Kwadrat(3, ConsoleColor.Blue);
+            //tablica[1] = new Kwadrat(5, ConsoleColor.Cyan);
+            //tablica[2] = new Kwadrat(4, ConsoleColor.Yellow);
+            //tablica[3] = new Kwadrat(6, ConsoleColor.Green);
+
+            List<Kwadrat> ListK = new List<Kwadrat>();
+            ListK.Add(new Kwadrat(3, ConsoleColor.Blue));
+            ListK.Add(new Kwadrat(5, ConsoleColor.Cyan));
+            ListK.Add(new Kwadrat(4, ConsoleColor.Yellow));
+            ListK.Add(new Kwadrat(2, ConsoleColor.Green));
+            foreach (Kwadrat tab in ListK)
+            {
+                tab.RysujKwadrat();
+            }
+            Console.WriteLine("liczba utworzonych kwadratow: " +Kwadrat.LiczbaKwadratow);
+            Console.WriteLine("najwieksze pole: " +  Kwadrat.MaxPole(ListK).Pole());
+            ListK.RemoveAt(0);
+            Console.WriteLine("aktualna liczba kwadratow: " + ListK.Count);
+            Console.ReadKey();
+        }
+    }
+}
+-----------
+using System;
+
+namespace ConsoleApp8
+{
+    internal class Kwadrat
+    {
+        int bok;
+        ConsoleColor kolor;
+        public static int LiczbaKwadratow=0;
+        public Kwadrat(int Bok, ConsoleColor Kolor)
+        {
+            bok = Bok;
+            kolor=Kolor;
+            LiczbaKwadratow++;
+        }
+        public void RysujKwadrat()
+        {
+            Console.ForegroundColor=kolor;
+            for (int i=1; i<=bok; i++)
+            {
+                for (int j = 1; j <= bok; j++)
+                    Console.Write(" * ");
+                Console.WriteLine();
+            }
+        }
+       public int Pole()
+        {
+            return bok * bok;
+        }
+        public static Kwadrat MaxPole(List<Kwadrat> ListK)
+        {
+            Kwadrat MaxKwadrat = ListK[0];
+            for (int i=1; i<ListK.Count; i++)
+            {
+                if (ListK[i].bok > MaxKwadrat.bok)
+                    MaxKwadrat = ListK[i];
+            }
+            return MaxKwadrat;
+        }
+    }
+}

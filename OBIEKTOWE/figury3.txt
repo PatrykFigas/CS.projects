@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace program
+{
+    class Figura
+    {
+        private double a;
+        private double b;
+        private double c;
+    
+
+        public Figura(double ba, double bb, double cc)  // konstruktor przeciazony
+        {
+            a = ba;
+            b = bb;
+            c = cc;
+        }
+        public Figura(double ba, double bb)  // konstruktor przeciazony
+        {
+            a = ba;
+            b = bb;
+        }
+        public Figura(double ba)  // konstruktor przeciazony
+        {
+            a = ba;
+        }
+        public Figura(Figura figa) // konstruktor kopiujacy
+        {
+            a = figa.a;
+            b = figa.b;
+            c = figa.c;
+      
+        }
+        public double ObliczObwod()  // element funkcyjny klasy
+        {
+            if (b == 0)
+                return Math.Round(2 * Math.PI * a, 2);  // kolo
+            else if (c == 0)
+                return 2 * a + 2 * b;  // trojkat
+            else
+                return  a + b + c; // prostokat
+        }
+        public double parametr1  // wlasciwosc z mozliwoscia zapisu
+        {
+            set
+            {
+              a = value;
+            }
+        }
+    }
+    class Program
+    {
+        static void Main()
+        {
+
+            Figura p1 = new Figura(1);     // kolo o promieniu 1
+            Figura p2 = new Figura(4, 5);  // prostokat o bokach 4 i 5 
+            Figura p3 = new Figura(2, 3, 5);  // trojkat o bokach 2, 3 i 5
+
+            Figura p4 = new Figura(p3);  // nowy obiekt p4 (skopiowany z p3)
+            Figura p5 = p3;  // referencja na p3 (dwie nazwy do tego samego obiektu)
+
+            p3.parametr1 = 1; // wlasciwosc 
+
+            Console.WriteLine(p1.ObliczObwod());   // 6,28
+            Console.WriteLine(p2.ObliczObwod());   // 18
+            Console.WriteLine(p3.ObliczObwod());   // 9
+            Console.WriteLine(p4.ObliczObwod());   // 10
+            Console.WriteLine(p5.ObliczObwod());   // 9
+        }
+    }
+}

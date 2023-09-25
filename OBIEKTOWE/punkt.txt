@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication13
+{
+
+    class Punkt
+    {
+        private int x, y;   // wspolrzedne punktu
+        private int xp, yp;  // wspolrzedne przesuniecia
+        public Punkt(int wspolrzedna_x, int wspolrzedna_y) //konstruktor
+        {
+            x = wspolrzedna_x;
+            y = wspolrzedna_y;
+        }
+
+
+        public void wyswietl()
+        {
+            Console.WriteLine("x= " + x + " y= " + y);
+
+        }
+
+        public void Przesun(int dod_x, int dod_y)
+        {
+            xp = dod_x;
+            yp = dod_y;
+            x = x + dod_x;
+            y = y + dod_y;
+        }
+
+        public void Cofnij_Przesun()
+        {
+       
+            x = x - xp;
+            y = y - yp;
+        }
+
+        public static double odleglosc(Punkt p1, Punkt p2)  //metoda statyczna wykonuje operacje na obiektach
+        {                                                   // klasy Punkt
+
+            return Math.Sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
+        }
+    }
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+            Punkt p1 = new Punkt(0, 5);
+            Punkt p2 = new Punkt(5, 5); // znajdz w necie przyklady obliczania 
+            // odlegosci i konkretne punkty i porownaj z programem
+
+            p1.wyswietl();
+            p1.Przesun(2, -2);
+            p1.wyswietl();
+        //  p1.Cofnij_Przesun(); 
+            p1.wyswietl();
+         
+            p2.Przesun(5, 4);
+            
+            Console.WriteLine(Punkt.odleglosc(p1, p2));
+
+
+
+        }
+    }
+
+}

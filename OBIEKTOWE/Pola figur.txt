@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace polimorfizm
+{
+    public abstract class Czworobok
+    {
+        protected int x;
+        protected int y;
+
+        public Czworobok(int bok_a, int bok_b)
+        {
+            x = bok_a;
+            y = bok_b;
+        }
+
+
+        public abstract double Pole();
+
+    }
+
+
+    public class Kwadrat : Czworobok
+    {
+        public Kwadrat(int bok_a)
+            : base(bok_a, bok_a)
+        {
+        }
+
+        public override double Pole()
+        {
+            return x * y;
+
+        }
+    }
+
+
+
+
+
+    public class Prostokat : Czworobok
+    {
+        public Prostokat(int bok_a, int bok_b)
+            : base(bok_a, bok_b)
+        {
+        }
+
+        public override double Pole()
+        {
+            return x * y;
+
+        }
+    }
+
+
+    public class Trapez : Czworobok
+    {
+        protected double h;
+
+
+        public Trapez(int podst_a, int podst_b, double wysokosc)
+            : base(podst_a, podst_b)
+        {
+            h = wysokosc;
+        }
+
+
+        public override double Pole()
+        {
+            return (x + y) / 2 * h;
+        }
+
+
+    }
+
+
+
+    class pokazik
+    {
+
+        public static void Main()
+        {
+            Czworobok kw = new Kwadrat(5);
+            Console.WriteLine(kw.Pole());
+
+            Czworobok pr = new Prostokat(5, 4);
+            Console.WriteLine(pr.Pole());
+
+
+            Czworobok tr = new Trapez(7, 9, 6);
+            Console.WriteLine(tr.Pole());
+        }
+
+    }
+}
